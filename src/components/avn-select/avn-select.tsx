@@ -34,15 +34,32 @@ export class AvnSelect {
 
   @Listen('document:click')
   onClick(e: any) {
+    const path = e.path || (e.composedPath && e.composedPath()) || this.propagationPath(e);
     let nativeElement = this.host.shadowRoot;
-    let elementToggle = nativeElement !== e.path[0];
-    let containedToggle = !nativeElement.contains(e.path[0]) ? false : !this.toggle;
+    let elementToggle = nativeElement !== path[0];
+    let containedToggle = !nativeElement.contains(path[0]) ? false : !this.toggle;
     this.toggle = elementToggle && containedToggle;
+  }
+
+  propagationPath(e) {
+    var element = e.target || null;
+    var pathArr = [element];
+
+    if (!element || !element.parentElement) {
+        return [];
+    }
+
+    while (element.parentElement) {
+        element = element.parentElement;
+        pathArr.push(element);
+    }
+
+    return pathArr;
   }
 
   componentDidLoad(){
     this.dropdownItems = this.host.querySelector('.avn-select-content');
-    if (!this.host.hasAttribute('tabindex')) {
+    if (!this.host.hasAttribute('tabindex') && !this.disabled) {
       this.host.tabIndex = 0;
     }
     this.loadItems(this.options);
@@ -211,11 +228,14 @@ export class AvnSelect {
 
     return (
       <div class={`avn-select ${this.disabled ? 'state-disabled' : ''}`}>
-        <input class={`avn-select-input ${this.disabled ? 'state-disabled' : ''}`}
-          value={this.value.label}
-          type="text"
-          placeholder={this.placeholder}
-          disabled/>
+        {/* <div class='avn-select-container'> */}
+          <input class={`avn-select-input ${this.disabled ? 'state-disabled' : ''}`}
+              value={this.value.label}
+              type="text"
+              tabindex="-1"
+              placeholder={this.placeholder}/>
+          <div class='avn-select-overlay'></div>
+        {/* </div>​ */}
         {clear ? clearButton : ''}
         <i class={`avn-select-icon ${this.disabled ? 'state-disabled' : ''}`}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">

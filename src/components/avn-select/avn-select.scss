@@ -75,10 +75,10 @@
     line-height: 25px;
     padding: 7px 15px 7px 15px;
     outline: none;
-    &:disabled {
+    &.state-disabled {
       color: #222;
       background-color: #FFF;
-      opacity:0.75;
+      opacity:0.5;
       cursor: not-allowed;
     }
     &.editable {
@@ -147,7 +147,6 @@
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
     width: 35px;
-    cursor: pointer;
     font-size: 14px;
 
     border-top-color: var(--border-color);
@@ -160,9 +159,6 @@
     border-bottom-style: solid;
     border-bottom-width: 1px;
 
-    tp-icon {
-      --icon-pointer-events: none;
-    }
     &:hover {
       fill: var(--arrow-color);
       background-color: var(--arrow-bg-color);
@@ -187,6 +183,15 @@
   a.avn-select-clear:hover,
   a.avn-select-clear .fa:hover{
     color: #cc0000;
+  }
+
+  .avn-select-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    cursor: pointer;
   }
 
   svg {

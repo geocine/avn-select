@@ -1,0 +1,199 @@
+:host(avn-select:focus) {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  .avn-select-input, .avn-select-icon {
+    border-color: rgba(8,57,114,0.5);
+  }
+}
+
+:host {
+  --arrow-color: #000;
+  --arrow-bg-color: #fff;
+  --border-color: #ccc;
+  --selected-color: #0A3874;
+  --hover-color: rgb(22, 104, 211);
+  --hover-text-color: #fff;
+  --height: 34px;
+  --border-radius: 5px;
+  --content-width: 100%;
+
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #6f7b81;
+  }
+  
+  ::-webkit-scrollbar-thumb {  
+    background-color: #282828;
+  }
+  
+  ::-webkit-scrollbar-button {
+    background-color: #6f7b81;
+    display:none;
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background-color:  #141414;
+  }
+
+
+  .avn-select {
+    position: relative;
+    box-sizing: inherit;
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: var(--height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #414141;
+    outline: none;
+    &:not(.state-disabled):hover {
+      -webkit-box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .avn-select-input {
+    box-sizing: border-box;
+    font-size: 14px;
+    flex-grow: 1;
+    height: inherit;
+    width: calc(22px - 100%);
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    color:#222;
+    line-height: 25px;
+    padding: 7px 15px 7px 15px;
+    outline: none;
+    &:disabled {
+      color: #222;
+      background-color: #FFF;
+      opacity:0.75;
+      cursor: not-allowed;
+    }
+    &.editable {
+      padding-right: 25px;
+    }
+    &:not(.state-disabled):hover {
+      cursor: pointer;
+    }
+  }
+  
+  .avn-select-content {
+    z-index: 10 !important;
+    width: var(--content-width);
+    position: absolute;
+    top: 35px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    hr {
+      margin: 0;
+    }
+  }
+  
+  .avn-select-items {
+    overflow-x: auto;
+    height: auto;
+    max-height: 145px;
+    user-select: none;
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+  }
+  
+  .avn-select-content-item {
+    line-height: 35px;
+    margin: 0;
+    padding: 0 10px;
+    cursor: pointer;
+    border-bottom: thin solid var(--border-color);
+    font-size: 14px;
+    &:hover {
+      border-bottom: 1px solid var(--selected-color);
+      background-color: var(--hover-color);
+      color: var(--hover-text-color);
+    }
+    &.active {
+      cursor: auto;
+      background-color: var(--selected-color);
+      color:#FFF;
+    }
+  }
+  
+  .avn-select-icon {
+    box-sizing: border-box;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    color: var(--arrow-color);
+    transition: all 0.2s ease;
+    background-color: var(--arrow-bg-color);
+    height: inherit;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    width: 35px;
+    cursor: pointer;
+    font-size: 14px;
+
+    border-top-color: var(--border-color);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: var(--border-color);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: var(--border-color);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+
+    tp-icon {
+      --icon-pointer-events: none;
+    }
+    &:hover {
+      fill: var(--arrow-color);
+      background-color: var(--arrow-bg-color);
+    }
+    &.state-disabled{
+      opacity:0.5;
+    }
+  }
+  
+  .avn-select-clear {
+    position: absolute;
+    right: 45px;
+    top: 10px;
+    cursor: pointer;
+  }
+  
+  a.avn-select-clear,
+  a.avn-select-clear .fa{
+    color: #4d4d4d;
+  }
+  
+  a.avn-select-clear:hover,
+  a.avn-select-clear .fa:hover{
+    color: #cc0000;
+  }
+
+  svg {
+    height: 1em;
+    width: 1em;
+    pointer-events: none;
+    fill: currentColor;
+    transform: scale(1, -1);
+  }
+}

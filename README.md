@@ -3,3 +3,37 @@
 # Select Component
 
 This a styleable select Web Component built using Stencil.
+
+![preview](https://i.imgur.com/C382oru.gif)
+## Usage
+
+Populating the options
+```html
+  <avn-select id="sample"></avn-select>
+  <script>
+    const avnSelect = document.querySelector('#sample');
+    avnSelect.options = [
+      {
+        "label": "Orange",
+        "value": "OR"
+      },
+      {
+        "label": "Apple",
+        "value": "APP"
+      }
+    ];
+  </script>
+```
+
+Listening for `change` event
+```js
+  avnSelect.addEventListener('change', (option) => {
+    // returns { label , value }
+  })
+```
+
+Getting the selected value
+```js
+  const selectedValue = avnSelect.value;
+  // returns { label, value }
+```

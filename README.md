@@ -29,6 +29,7 @@ Listening for `change` event
 ```js
   avnSelect.addEventListener('change', (option) => {
     // returns { label , value }
+    // do something with returned value
   })
 ```
 

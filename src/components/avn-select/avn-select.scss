@@ -1,7 +1,7 @@
 :host(avn-select:focus) {
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  box-shadow: var(--focused-border-shadow);
   .avn-select-input, .avn-select-icon {
-    border-color: rgba(8,57,114,0.5);
+    border-color: var(--focused-border-color);
   }
 }
 
@@ -10,11 +10,14 @@
   --arrow-bg-color: #fff;
   --border-color: #ccc;
   --selected-color: #0A3874;
-  --hover-color: rgb(22, 104, 211);
+  --hover-color: #1668d3;
   --hover-text-color: #fff;
   --height: 34px;
   --border-radius: 5px;
   --content-width: 100%;
+  --content-border-radius: 0;
+  --focused-border-color: rgba(8,57,114,0.5);
+  --focused-border-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
 
   display: block;
   font-family: inherit;
@@ -74,8 +77,10 @@
     border: 1px solid var(--border-color);
     color:#222;
     line-height: 25px;
-    padding: 7px 15px 7px 15px;
+    padding: 7px 35px 7px 14px;
     outline: none;
+    font-family: inherit;
+    font-size: inherit;
     &.state-disabled {
       color: #222;
       background-color: #FFF;
@@ -94,10 +99,10 @@
     z-index: 10 !important;
     width: var(--content-width);
     position: absolute;
-    top: 35px;
+    top: var(--height);
     height: auto;
     background-color: #fff;
-    border-radius: 3px;
+    border-radius: var(--content-border-radius);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     display: flex;
     flex-direction: column;
@@ -120,19 +125,29 @@
   .avn-select-content-item {
     line-height: 35px;
     margin: 0;
-    padding: 0 10px;
+    padding: 0 15px;
     cursor: pointer;
     border-bottom: thin solid var(--border-color);
-    font-size: 14px;
+    font-size: inherit;
+    font-family: inherit;
     &:hover {
-      border-bottom: 1px solid var(--selected-color);
+      border-bottom-color: var(--hover-color);
       background-color: var(--hover-color);
       color: var(--hover-text-color);
     }
     &.active {
-      cursor: auto;
+      border-bottom-color: var(--selected-color);
       background-color: var(--selected-color);
       color:#FFF;
+    }
+    &:last-child {
+      border-bottom-color: transparent;
+      border-bottom-left-radius: var(--content-border-radius);
+      border-bottom-right-radius: var(--content-border-radius);
+    }
+    &:first-child {
+      border-top-left-radius: var(--content-border-radius);
+      border-top-right-radius: var(--content-border-radius);
     }
   }
   
@@ -172,7 +187,7 @@
   .avn-select-clear {
     position: absolute;
     right: 45px;
-    top: 10px;
+    display: inline-flex;
     cursor: pointer;
   }
   

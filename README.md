@@ -4,7 +4,9 @@
 
 This a styleable select Web Component built using Stencil.
 
+<div align="center" markdown="1">
 ![preview](https://i.imgur.com/59qFoui.gif)
+</div>
 
 ## Usage
 

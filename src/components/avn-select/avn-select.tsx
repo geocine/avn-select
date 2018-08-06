@@ -16,7 +16,7 @@ export class AvnSelect {
   dropdownItems: HTMLElement;
 
   @State() optionList: any = [];
-  @Prop() options: any = [];
+  @Prop({ mutable: true }) options: any = [];
   @Watch('options')
   watchItemList(value) {
     this.loadItems(value);
@@ -62,7 +62,10 @@ export class AvnSelect {
     if (!this.host.hasAttribute('tabindex') && !this.disabled) {
       this.host.tabIndex = 0;
     }
-    this.loadItems(this.options);
+    if(this.options.length < 1) {
+      let options: any[] = Array.from(this.host.querySelectorAll('avn-option'));
+      this.options = options.map(option => {return { label: option.label, value: option.value }});
+    }
     if(this.selectedValue){
       this.setSelectedValue(this.selectedValue);
     }
@@ -98,7 +101,7 @@ export class AvnSelect {
     this.onChange.emit(this.value);
   }
 
-  loadItems(value) {
+  loadItems(value = []) {
     this.optionList = value;
     this.value = { label: '', value: '' };
     this.isEditable = false;

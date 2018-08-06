@@ -4,7 +4,8 @@
 
 This a styleable select Web Component built using Stencil.
 
-![preview](https://i.imgur.com/C382oru.gif)
+![preview](https://i.imgur.com/59qFoui.gif)
+
 ## Usage
 
 Populating the options
@@ -25,8 +26,26 @@ Populating the options
   </script>
 ```
 
+OR you can initialize it declaratively
+
+```html
+  <avn-select id="sample">
+    <avn-option value="OR">Orange</avn-option>
+    <avn-option value="APP">Apple</avn-option>
+  </avn-select>
+```
+
+> NOTE: this is only for initialization, for updating you need to modify the `.options` attribute in an immutable way eg:
+
+```js
+  const avnSelect = document.querySelector('#sample');
+  avnSelect.options = [...avnSelect.options, {label: 'Strawberry', value: 'STR'}];
+```
+
+
 Listening for `change` event
 ```js
+  const avnSelect = document.querySelector('#sample');
   avnSelect.addEventListener('change', (option) => {
     // returns { label , value }
     // do something with returned value
@@ -35,6 +54,28 @@ Listening for `change` event
 
 Getting the selected value
 ```js
+  const avnSelect = document.querySelector('#sample');
   const selectedValue = avnSelect.value;
   // returns { label, value }
+```
+
+## Styling
+
+These are the available CSS variables and their default values:
+
+```css
+:host {
+  --arrow-color: #000;
+  --arrow-bg-color: #fff;
+  --border-color: #ccc;
+  --selected-color: #0A3874;
+  --hover-color: #1668d3;
+  --hover-text-color: #fff;
+  --height: 34px;
+  --border-radius: 5px;
+  --content-width: 100%;
+  --content-border-radius: 0;
+  --focused-border-color: rgba(8,57,114,0.5);
+  --focused-border-shadow: inset 0 1px 1px; 
+}
 ```

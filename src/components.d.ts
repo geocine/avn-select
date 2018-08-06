@@ -29,6 +29,41 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AvnOption {
+      'label': string;
+      'value': string;
+    }
+  }
+
+  interface HTMLAvnOptionElement extends StencilComponents.AvnOption, HTMLStencilElement {}
+
+  var HTMLAvnOptionElement: {
+    prototype: HTMLAvnOptionElement;
+    new (): HTMLAvnOptionElement;
+  };
+  interface HTMLElementTagNameMap {
+    'avn-option': HTMLAvnOptionElement;
+  }
+  interface ElementTagNameMap {
+    'avn-option': HTMLAvnOptionElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'avn-option': JSXElements.AvnOptionAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AvnOptionAttributes extends HTMLAttributes {
+      'label'?: string;
+      'value'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AvnSelect {
       'disabled': boolean;
       'options': any;

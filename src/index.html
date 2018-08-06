@@ -11,20 +11,13 @@
 
 <body>
 
-  <avn-select id="sample"></avn-select>
-  <script>
-    const avnSelect = document.querySelector('#sample');
-    avnSelect.options = [
-      {
-        "label": "Orange",
-        "value": "OR"
-      },
-      {
-        "label": "Apple",
-        "value": "APP"
-      }
-    ];
-  </script>
+  <avn-select id="sample">
+    <avn-option value="OR">Orange</avn-option>
+    <avn-option value="MAN">Mango</avn-option>
+    <avn-option value="STR">Strawberry</avn-option>
+    <avn-option value="APP">Apple</avn-option>
+  </avn-select>
+
 </body>
 
 </html>

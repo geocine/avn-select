@@ -64,7 +64,7 @@ export class AvnSelect {
     }
     if(this.options.length < 1) {
       let options: any[] = Array.from(this.host.querySelectorAll('avn-option'));
-      this.options = options.map(option => {return { label: option.label, value: option.value }});
+      this.options = options.map(option => ({ label: option.label, value: option.value }));
     }
     if(this.selectedValue){
       this.setSelectedValue(this.selectedValue);
@@ -213,15 +213,11 @@ export class AvnSelect {
       </svg>
     </a>;
 
-    let itemList = [];
-    for(let i = 0; i < this.optionList.length; i++) {
-      const item = this.optionList[i];
-      itemList.push(
-        <div class={`avn-select-content-item item-${i} ${item.selected ? 'active' : ''}`} onClick={() => this.selectItem(item)}>
-          { item.label ? item.label : item}
-        </div>
-      );
-    }
+    let itemList = this.optionList.map((item, i) => {
+      return <div class={`avn-select-content-item item-${i} ${item.selected ? 'active' : ''}`} onClick={() => this.selectItem(item)}>
+        { item.label ? item.label : item}
+      </div>
+    });
 
     let list = <div class="avn-select-content">
       <div class="avn-select-items">

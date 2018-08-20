@@ -9,7 +9,7 @@ describe('avn-select', () => {
     expect(new AvnSelect()).toBeTruthy();
   });
 
-  describe('rendering', () => {
+  describe('basic', () => {
     let element;
     beforeEach(async () => {
       window = new TestWindow();
@@ -19,15 +19,14 @@ describe('avn-select', () => {
       });
     });
 
-    it('test sample', async () => {
-      //element.attr = '';
+    it('should render without attributes', async () => {
       await window.flush();
       expect(element).toBeTruthy();
     });
 
   });
 
-  describe('options', () => {
+  describe('static options', () => {
     let element;
     beforeEach(async () => {
       window = new TestWindow();
@@ -45,6 +44,19 @@ describe('avn-select', () => {
     it('should have 4 options', async () => {
       await window.flush();
       expect(element.options).toHaveLength(4);
+    });
+
+    it('should have initialized all options', async () => {
+      // TODO https://github.com/ionic-team/stencil/issues/995
+      await window.flush();
+      // expect(element.options[0].label).toBe('Orange');
+      expect(element.options[0].value).toBe('OR');
+      // expect(element.options[1].label).toBe('Mango');
+      expect(element.options[1].value).toBe('MAN');
+      // expect(element.options[2].label).toBe('Strawberry');
+      expect(element.options[2].value).toBe('STR');
+      // expect(element.options[3].label).toBe('Apple');
+      expect(element.options[3].value).toBe('APP');
     });
 
   });

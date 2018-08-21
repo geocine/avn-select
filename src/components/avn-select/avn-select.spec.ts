@@ -14,7 +14,7 @@ describe('avn-select', () => {
     beforeEach(async () => {
       window = new TestWindow();
       element = await window.load({
-        components: [AvnSelect],
+        components: [AvnSelect, AvnOption],
         html: '<avn-select></avn-select>'
       });
     });
@@ -22,6 +22,15 @@ describe('avn-select', () => {
     it('should render without attributes', async () => {
       await window.flush();
       expect(element).toBeTruthy();
+    });
+
+    it('should add options via attribute', async () => {
+      await window.flush();
+      element.options = [
+        {label: 'Orange', value: 'OR'},
+        {label: 'Mango', value: 'MAN'}
+      ]
+      expect(element.options).toHaveLength(2);
     });
 
   });

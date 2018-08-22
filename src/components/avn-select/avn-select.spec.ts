@@ -68,6 +68,21 @@ describe('avn-select', () => {
       expect(element.options[3].value).toBe('APP');
     });
 
+    it('should select using arrow keys', async () => {
+      await window.flush();
+      element.focus();
+      let arrowDownKey: any = new window.Event('keydown');
+      arrowDownKey.which = 40;
+      element.dispatchEvent(arrowDownKey);
+      element.dispatchEvent(arrowDownKey);
+      element.dispatchEvent(arrowDownKey);
+      let enterKey: any = new window.Event('keydown');
+      enterKey.which = 13;
+      element.dispatchEvent(enterKey);
+      const selected = element.options.find(options => options.selected);   
+      expect(selected.value).toBe('MAN'); 
+    });
+
   });
 
 

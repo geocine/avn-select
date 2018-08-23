@@ -64,7 +64,7 @@ export class AvnSelect {
     }
     if(this.options.length < 1) {
       let options: any[] = Array.from(this.host.querySelectorAll('avn-option'));
-      this.options = options.map(option => ({ label: option.label, value: option.value }));
+      this.options = options.map(option => ({ label: option.label, value: option.value, selected: option. selected }));
     }
     if(this.selectedValue){
       this.setSelectedValue(this.selectedValue);

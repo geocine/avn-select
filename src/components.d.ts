@@ -31,6 +31,7 @@ declare global {
   namespace StencilComponents {
     interface AvnOption {
       'label': string;
+      'selected': boolean;
       'value': string;
     }
   }
@@ -55,6 +56,7 @@ declare global {
   namespace JSXElements {
     export interface AvnOptionAttributes extends HTMLAttributes {
       'label'?: string;
+      'selected'?: boolean;
       'value'?: string;
     }
   }

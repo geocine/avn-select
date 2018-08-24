@@ -148,10 +148,14 @@ export class AvnSelect {
 
       //up
       case 38:
-        if (this.selectedItemIndex > 0) {
-          let prevItemIndex = this.selectedItemIndex - 1;
-          this.setSelectedValue(this.optionList[prevItemIndex].value);
-          this.scrollToItem(prevItemIndex, false);
+        if(!this.toggle){
+          this.toggle = true;          
+        } else {
+          if (this.selectedItemIndex > 0) {
+            let prevItemIndex = this.selectedItemIndex - 1;
+            this.setSelectedValue(this.optionList[prevItemIndex].value);
+            this.scrollToItem(prevItemIndex, false);
+          }
         }
 
         event.preventDefault();

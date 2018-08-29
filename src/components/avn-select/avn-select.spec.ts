@@ -42,12 +42,18 @@ describe('avn-select', () => {
       element = await window.load({
         components: [AvnSelect, AvnOption],
         html: `<avn-select>
-          <avn-option value="OR">Orange</avn-option>
+          <avn-option value="OR" selected>Orange</avn-option>
           <avn-option value="MAN">Mango</avn-option>
           <avn-option value="STR">Strawberry</avn-option>
           <avn-option value="APP">Apple</avn-option>
         </avn-select>`
       });
+    });
+
+    it('should set selected to option with selected', async () => {
+      await window.flush();
+      const selected = element.options.find(options => options.selected); 
+      expect(selected.value).toBe('OR');
     });
 
     it('should have 4 options', async () => {
@@ -80,7 +86,7 @@ describe('avn-select', () => {
       enterKey.which = 13;
       element.dispatchEvent(enterKey);
       const selected = element.options.find(options => options.selected);   
-      expect(selected.value).toBe('MAN'); 
+      expect(selected.value).toBe('STR'); 
     });
 
   });

@@ -89,6 +89,19 @@ describe('avn-select', () => {
       expect(selected.value).toBe('STR'); 
     });
 
+    it('should clear selected using escape key', async () => {
+      await window.flush();
+      element.focus();
+      let arrowDownKey: any = new window.Event('keydown');
+      arrowDownKey.which = 40;
+      element.dispatchEvent(arrowDownKey);
+      let escapeKey: any = new window.Event('keydown');
+      escapeKey.which = 27;
+      element.dispatchEvent(escapeKey);
+      const selected = element.options.find(options => options.selected);   
+      expect(selected).toBeFalsy();
+    });
+
   });
 
 

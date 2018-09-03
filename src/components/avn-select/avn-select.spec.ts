@@ -74,7 +74,7 @@ describe('avn-select', () => {
       expect(element.options[3].value).toBe('APP');
     });
 
-    it('should select using arrow keys', async () => {
+    it('should select using arrow down keys', async () => {
       await window.flush();
       element.focus();
       let arrowDownKey: any = new window.Event('keydown');
@@ -87,6 +87,21 @@ describe('avn-select', () => {
       element.dispatchEvent(enterKey);
       const selected = element.options.find(options => options.selected);   
       expect(selected.value).toBe('STR'); 
+    });
+
+    it('should select using arrow up keys', async () => {
+      await window.flush();
+      element.focus();
+      let arrowUpKey: any = new window.Event('keydown');
+      arrowUpKey.which = 38;
+      element.dispatchEvent(arrowUpKey);
+      element.dispatchEvent(arrowUpKey);
+      element.dispatchEvent(arrowUpKey);
+      let enterKey: any = new window.Event('keydown');
+      enterKey.which = 13;
+      element.dispatchEvent(enterKey);
+      const selected = element.options.find(options => options.selected);   
+      expect(selected.value).toBe('OR'); 
     });
 
     it('should clear selected using escape key', async () => {

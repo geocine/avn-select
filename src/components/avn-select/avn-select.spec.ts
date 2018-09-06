@@ -92,16 +92,20 @@ describe('avn-select', () => {
     it('should select using arrow up keys', async () => {
       await window.flush();
       element.focus();
+      let arrowDownKey: any = new window.Event('keydown');
+      arrowDownKey.which = 40;
       let arrowUpKey: any = new window.Event('keydown');
       arrowUpKey.which = 38;
       element.dispatchEvent(arrowUpKey);
-      element.dispatchEvent(arrowUpKey);
+      element.dispatchEvent(arrowDownKey);
+      element.dispatchEvent(arrowDownKey);
+      element.dispatchEvent(arrowDownKey);
       element.dispatchEvent(arrowUpKey);
       let enterKey: any = new window.Event('keydown');
       enterKey.which = 13;
       element.dispatchEvent(enterKey);
       const selected = element.options.find(options => options.selected);   
-      expect(selected.value).toBe('OR'); 
+      expect(selected.value).toBe('STR'); 
     });
 
     it('should clear selected using escape key', async () => {

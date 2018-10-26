@@ -134,6 +134,9 @@ export class AvnSelect {
             if (nextItemIndex != (this.optionList.length)) {
               this.setSelectedValue(this.optionList[nextItemIndex].value);
               this.scrollToItem(nextItemIndex);
+            } else {
+              this.setSelectedValue(this.optionList[0].value);
+              this.scrollToItem(0);
             }
           }
           else if (this.optionList) {
@@ -155,6 +158,9 @@ export class AvnSelect {
             let prevItemIndex = this.selectedItemIndex - 1;
             this.setSelectedValue(this.optionList[prevItemIndex].value);
             this.scrollToItem(prevItemIndex, false);
+          } else {
+            this.setSelectedValue(this.optionList[this.optionList.length - 1].value);
+            this.scrollToItem(this.optionList.length - 1, false);           
           }
         }
 

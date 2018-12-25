@@ -58,7 +58,6 @@ export class AvnSelect {
   }
 
   componentDidLoad(){
-    this.dropdownItems = this.host.querySelector('.avn-select-content');
     if (!this.host.hasAttribute('tabindex') && !this.disabled) {
       this.host.tabIndex = 0;
     }
@@ -134,11 +133,12 @@ export class AvnSelect {
             if (nextItemIndex != (this.optionList.length)) {
               this.setSelectedValue(this.optionList[nextItemIndex].value);
               this.scrollToItem(nextItemIndex);
+            } else {
+              this.scrollToTop();
             }
           }
-          else if (this.optionList) {
-            this.setSelectedValue(this.optionList[0].value);
-            this.scrollToItem(0);
+          else  {
+            this.scrollToTop();
           }
         }
 
@@ -155,6 +155,8 @@ export class AvnSelect {
             let prevItemIndex = this.selectedItemIndex - 1;
             this.setSelectedValue(this.optionList[prevItemIndex].value);
             this.scrollToItem(prevItemIndex, false);
+          } else {
+            this.scrollToBottom()
           }
         }
 
@@ -185,7 +187,23 @@ export class AvnSelect {
     }
   }
 
+  scrollToTop(){
+    if (this.optionList) {
+      this.setSelectedValue(this.optionList[0].value);
+      this.scrollToItem(0);
+    }
+  }
+
+  scrollToBottom(){
+    if(this.optionList) {
+      const lastIndex = this.optionList.length-1;
+      this.setSelectedValue(this.optionList[lastIndex].value);
+      this.scrollToItem(lastIndex)
+    }
+  }
+
   scrollToItem(index, down = true) {
+    this.dropdownItems = this.host.shadowRoot.querySelector('.avn-select-items');
     if (this.dropdownItems) {
       const itemHeight = 35;
       if (!this.isScrolledIntoView(index)) {

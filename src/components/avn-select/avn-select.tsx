@@ -206,12 +206,18 @@ export class AvnSelect {
     this.dropdownItems = this.host.shadowRoot.querySelector('.avn-select-items');
     if (this.dropdownItems) {
       const itemHeight = 35;
-      if (!this.isScrolledIntoView(index)) {
-        if (down) {
-          this.dropdownItems.scrollTop += itemHeight;
-        } else {
-          this.dropdownItems.scrollTop -= itemHeight;
-        }
+      switch(index) {
+        case 0:
+          this.dropdownItems.scrollTop = 0;
+          break;
+        case this.optionList.length - 1:
+          this.dropdownItems.scrollTop = this.dropdownItems.scrollHeight
+          break;
+        default:
+          if (!this.isScrolledIntoView(index)) {
+            const scrollTop = this.dropdownItems.scrollTop;
+            this.dropdownItems.scrollTop = down ? scrollTop + itemHeight : scrollTop - itemHeight;
+          }
       }
     }
   }

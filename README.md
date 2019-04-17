@@ -6,7 +6,7 @@ This a styleable select Web Component built using Stencil.
 
 <div align="center" markdown="1">
 
-![preview](https://i.imgur.com/kz9P2P6.gif)
+<img src="https://i.imgur.com/kz9P2P6.gif" width="600px"/>
 
 </div>
 

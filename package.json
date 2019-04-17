@@ -27,7 +27,8 @@
     "jest": "^23.4.1",
     "semver": "^5.5.0",
     "merge": ">=1.2.1",
-    "cryptiles": ">=4.1.2"
+    "cryptiles": ">=4.1.2",
+    "lodash": ">=4.17.11"
   },
   "repository": {
     "type": "git",

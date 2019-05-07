@@ -5,12 +5,10 @@ import { Component, Prop, Element } from '@stencil/core';
   shadow: true
 })
 export class AvnOption {
-
   @Element() host: HTMLElement;
   @Prop() value: string;
-  @Prop({ mutable: true}) label: string;
-  @Prop({ mutable: true}) selected: boolean;
-
+  @Prop({ mutable: true }) label: string;
+  @Prop({ mutable: true }) selected: boolean;
 
   componentDidLoad() {
     this.label = this.host.innerText;
